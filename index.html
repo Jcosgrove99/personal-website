@@ -27,7 +27,7 @@
     // API call function
     async function callApi() {
       try {
-        const res = await fetch('http://localhost:8000/api/greet');
+        const res = await fetch('https://first-fastapi-64390ea2a7e8.herokuapp.com/api/greet');
         const data = await res.json();
         document.getElementById('response').innerText = data.message;
       } catch (err) {
