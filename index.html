@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <title>Frontend with API and Counter</title>
+</head>
+<body>
+  <h1>Simple Web Page</h1>
+
+  <!-- Call API Section -->
+  <button onclick="callApi()">Call Backend</button>
+  <p id="response"></p>
+
+  <!-- Counter Section -->
+  <h2>Counter</h2>
+  <p>Count: <span id="counter">0</span></p>
+  <button onclick="incrementCounter()">Increase</button>
+
+  <script>
+    // API call function
+    async function callApi() {
+      try {
+        const res = await fetch('http://localhost:8000/api/greet');
+        const data = await res.json();
+        document.getElementById('response').innerText = data.message;
+      } catch (err) {
+        document.getElementById('response').innerText = 'Error calling API';
+        console.error(err);
+      }
+    }
+
+    // Counter logic
+    let count = 0;
+
+    function incrementCounter() {
+      count++;
+      document.getElementById("counter").innerText = count;
+    }
+  </script>
+</body>
+</html>
+
