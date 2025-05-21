@@ -1,7 +1,9 @@
 from fastapi import FastAPI
 from fastapi.middleware.cors import CORSMiddleware
 import uvicorn
+from llm import LLM
 
+llm = LLM()
 app = FastAPI()
 
 # Allow frontend to call this from browser
@@ -14,8 +16,10 @@ app.add_middleware(
 
 @app.get("/api/greet")
 def greet():
+    response = llm.ask("is the api call working?")
+
     return {
-        "message": f"Hello from the backend!"
+        "message": response
         }
 
 if __name__ == "__main__":

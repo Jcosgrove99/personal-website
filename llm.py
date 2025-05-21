@@ -1,11 +1,20 @@
 # LLMs to use: Gemini, Groq
-
 from google import genai
+from dotenv import load_dotenv
 import os
 
-client = genai.Client(api_key=os.getenv('gemini_api_key'))
+load_dotenv()
 
-response = client.models.generate_content(
-    model="gemini-2.0-flash", contents="Explain how AI works in a few words"
-)
-print(response.text)
+api_key = os.getenv('GEMINI_API_KEY')
+client = genai.Client(api_key=api_key)
+
+class LLM:
+    def __init__(self):
+        self.client = genai.Client(api_key=api_key)
+
+    def ask(self, prompt):
+        response = self.client.models.generate_content(
+            model="gemini-2.0-flash", contents=prompt
+        )
+        return response.text
+
