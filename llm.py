@@ -8,6 +8,7 @@ load_dotenv()
 api_key = os.getenv('GEMINI_API_KEY')
 client = genai.Client(api_key=api_key)
 
+# LLM class
 class LLM:
     def __init__(self):
         self.client = genai.Client(api_key=api_key)
