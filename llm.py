@@ -5,8 +5,9 @@ import os
 
 load_dotenv()
 
-api_key = os.getenv('GEMINI_API_KEY')
-client = genai.Client(api_key=api_key)
+api_key = os.getenv('GEMINI_API_KEY', None)
+if api_key is None:
+    raise ValueError("GEMINI_API_KEY is not set")
 
 # LLM class
 class LLM:
